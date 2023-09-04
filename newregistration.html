@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registraction</title>
+    <link rel="stylesheet" href="newregistration.css">
+    <script>
+        function RegValidation(form){
+            var FirstName=document.getElementById("First").value;
+            var LastName=document.getElementById("Last").value;
+            var Number=document.getElementById("num").value;
+            var Password=document.getElementById("password").value;
+            var cPassword=document.getElementById("cPassword").value;
+            var Email=document.getElementById("email").value;
+            var position1=Email.indexOf("@");
+            var position2=Email.lastIndexOf(".");
+            var radio=document.getElementsByName("gender");
+            let check=false;
+            if(FirstName.length===0||FirstName.length<3)
+            {
+                alert("please enter your  first name");
+                return false;
+            }
+            if(LastName.length===0||LastName.length>16)
+            {
+                alert("please enter your  last name");
+                return false;
+            }
+            if (Number.length===0||Number.length>10) {
+                alert("Please enter valid number");
+                return false;
+            }
+            if (Password!=cPassword) {
+                alert("please enter matched password");
+                return false;
+            }
+            if (position1<1||position2<position1+2||position2+2>=Email.length) {
+                alert("please enter valid eamil");
+                return false;
+            }
+            for (let i = 0;i < radio.length;i++) {
+                if(radio[i].checked) {
+                 check=true;
+                 break;   
+                }
+                
+            }
+            if (!check) {
+                alert("please select gender");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+<form action="" method="post" onsubmit="RegValidation(this)">
+    <h2>Registraction Form</h2>
+    <div class="content">
+        <div class="input-box">
+            <label for="name">First Name</label>
+            <input id="First" type="text" placeholder="Enter first name"  name="first" >
+        </div>
+        <div class="input-box">
+            <label for="name">Last Name</label>
+            <input  id="Last" type="text" placeholder="Enter Last name"  name="last" >
+        </div>
+        <div class="input-box">
+            <label for="Number">Phone Number</label>
+            <input id="num" type="number" placeholder="Enter phone number" name="number">
+        </div>
+        <div class="input-box">
+            <label for="email">Email</label>
+            <input id="email" type="text" placeholder="Enter email address">
+        </div>
+        <div class="input-box">
+            <label for="name">Password</label>
+            <input id="password" type="password" placeholder="Enter password" name="password">
+        </div>
+        <div class="input-box">
+            <label for="name">Confirm password</label>
+            <input id="cPassword" type="password" placeholder="re-enter password">
+        </div>
+        <span class="title">Gender</span>
+        <div class="category" >
+            <input type="radio" id="male" name="gender">
+            <label for="gender">Male</label>
+            <input type="radio" id="female" name="gender">
+            <label for="gender">Female</label>
+            <input type="radio" id="Others" name="gender">
+            <label for="gender">Others</label>
+        </div>
+    </div>
+    <div class="button-container">
+     <button type="submit">Register</button>
+    </div>
+</form>
+    </div>
+</body>
+</html>
